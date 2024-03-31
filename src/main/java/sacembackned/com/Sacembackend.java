@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SacembacknedApplication {
+public class Sacembackend{
 
 	public static void main(String[] args) {
-		SpringApplication.run(SacembacknedApplication.class, args);
+		SpringApplication.run(Sacembackend.class, args);
 	}
 
 }
