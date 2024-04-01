@@ -42,10 +42,13 @@ public ResponseEntity<?> addFormation(@RequestBody formation f) {
     formation addedFormation = formationservice.addformation(f);
     
     if (addedFormation != null) {
-        return ResponseEntity.status(HttpStatus.CREATED).body("Formation ajoutée avec succès.");
+        // Return a JSON object with a success message
+        return ResponseEntity.status(HttpStatus.CREATED).body("{\"message\": \"Formation ajoutée avec succès.\"}");
     } else {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'ajout de la formation.");
+        // Return a JSON object with an error message
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\": \"Erreur lors de l'ajout de la formation.\"}");
     }
 }
+
 }
 

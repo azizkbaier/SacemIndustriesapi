@@ -14,7 +14,6 @@ public class admin {
     private Long idadmin;
     private String adminname;
     private String password;
-
     public admin() {
         super();
     }
