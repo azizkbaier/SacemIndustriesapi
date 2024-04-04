@@ -46,4 +46,5 @@ public class assistancecontroller {
 	    } else {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Erreur lors de l'ajout de la assistance.\"}");
 	    }
-	}}
+	}
+}

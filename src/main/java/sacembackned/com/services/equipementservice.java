@@ -2,7 +2,6 @@ package sacembackned.com.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 
 import sacembackned.com.entity.equipement;
 
