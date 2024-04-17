@@ -1,92 +1,64 @@
 package sacembackned.com.entity;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.util.Objects;
-
 @Entity
-public class admin {
+public class admin implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idadmin;
-    private String adminname;
+    private String name;
+    private String email;
     private String password;
-    public admin() {
-        super();
-    }
-
-    public admin(Long idadmin, String adminname, String password) {
-        super();
-        this.idadmin = idadmin;
-        this.adminname = adminname;
-        this.password = password;
-    }
 
     public Long getIdadmin() {
-        return this.idadmin;
+        return idadmin;
     }
 
     public void setIdadmin(Long idadmin) {
         this.idadmin = idadmin;
     }
 
-    public String getAdminname() {
-        return this.adminname;
+    public String getName() {
+        return name;
     }
 
-    public void setAdminname(String adminname) {
-        this.adminname = adminname;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public admin idadmin(Long idadmin) {
-        setIdadmin(idadmin);
-        return this;
+    public admin(Long idadmin, String name, String email, String password) {
+        super();
+        this.idadmin = idadmin;
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
-    public admin adminname(String adminname) {
-        setAdminname(adminname);
-        return this;
+    public admin() {
+        super();
     }
+    
 
-    public admin password(String password) {
-        setPassword(password);
-        return this;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof admin)) {
-            return false;
-        }
-        admin admin = (admin) o;
-        return Objects.equals(idadmin, admin.idadmin) && Objects.equals(adminname, admin.adminname) && Objects.equals(password, admin.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idadmin, adminname, password);
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-            " idadmin='" + getIdadmin() + "'" +
-            ", adminname='" + getAdminname() + "'" +
-            ", password='" + getPassword() + "'" +
-            "}";
-    }
-   
 }
