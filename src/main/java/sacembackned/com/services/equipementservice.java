@@ -2,7 +2,6 @@ package sacembackned.com.services;
 
 import java.util.List;
 
-
 import sacembackned.com.entity.equipement;
 
 public interface equipementservice {
@@ -11,4 +10,5 @@ public interface equipementservice {
     void deleteequipement(Long id);
     List<equipement> getallequipement();
     equipement getequipementById(Long id);
+
 }

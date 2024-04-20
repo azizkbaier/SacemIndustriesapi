@@ -60,5 +60,5 @@ public void deleteequipement(Long id) {
         Optional<equipement> equipementOptional = repequipement.findById(id);
         return equipementOptional.orElse(null);
     }
-    
+   
 }

@@ -1,13 +1,11 @@
 package sacembackned.com.repository;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import sacembackned.com.entity.equipement;
-
+import sacembackned.com.entity.cv;
 @Repository
-public interface equipementrepository  extends JpaRepository <equipement,Long> {
-    
+public interface cvrepository extends JpaRepository <cv,Long> {
+
     
 }
