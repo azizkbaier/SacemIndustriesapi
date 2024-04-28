@@ -2,10 +2,13 @@ package sacembackned.com.entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 @Entity
 public class condidaturespontane {
     @Id
@@ -13,8 +16,6 @@ public class condidaturespontane {
     private Long idcondidature;
     private String civilite;
     private String nometprenom;
-
-    
     private LocalDate datedenaissance;
     private String email;
     private String adresse;
@@ -23,12 +24,17 @@ public class condidaturespontane {
     private int telephone;
     private String niveaudediplome;
     private String intituledediplome;
-    private  String cv;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+
+    private  cv cv;
+    
+   
 
     public condidaturespontane() {
     }
 
-    public condidaturespontane(Long idcondidature, String civilite, String nometprenom, LocalDate datedenaissance, String email, String adresse, int codepostal, String ville, int telephone, String niveaudediplome, String intituledediplome, String cv) {
+    public condidaturespontane(Long idcondidature, String civilite, String nometprenom, LocalDate datedenaissance, String email, String adresse, int codepostal, String ville, int telephone, String niveaudediplome, String intituledediplome, cv cv) {
         this.idcondidature = idcondidature;
         this.civilite = civilite;
         this.nometprenom = nometprenom;
@@ -41,6 +47,18 @@ public class condidaturespontane {
         this.niveaudediplome = niveaudediplome;
         this.intituledediplome = intituledediplome;
         this.cv = cv;
+    }
+    public condidaturespontane( String civilite, String nometprenom, LocalDate datedenaissance, String email, String adresse, int codepostal, String ville, int telephone, String niveaudediplome, String intituledediplome) {
+        this.civilite = civilite;
+        this.nometprenom = nometprenom;
+        this.datedenaissance = datedenaissance;
+        this.email = email;
+        this.adresse = adresse;
+        this.codepostal = codepostal;
+        this.ville = ville;
+        this.telephone = telephone;
+        this.niveaudediplome = niveaudediplome;
+        this.intituledediplome = intituledediplome;
     }
 
     public Long getIdcondidature() {
@@ -131,11 +149,11 @@ public class condidaturespontane {
         this.intituledediplome = intituledediplome;
     }
 
-    public String getCv() {
+    public cv getCv() {
         return this.cv;
     }
 
-    public void setCv(String cv) {
+    public void setCv(cv cv) {
         this.cv = cv;
     }
   

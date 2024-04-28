@@ -1,6 +1,7 @@
 package sacembackned.com.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -85,4 +86,8 @@ public ResponseEntity<String> deleteequipement(@PathVariable("id") Long id) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("equipement non trouvé pour l'ID donné.");
         }
     }
+    
+    
+
+    
 }
