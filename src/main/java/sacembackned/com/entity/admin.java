@@ -9,56 +9,65 @@ import jakarta.persistence.Id;
 
 @Entity
 public class admin implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idadmin;
-    private String name;
-    private String email;
-    private String password;
 
-    public Long getIdadmin() {
-        return idadmin;
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long idadmin;
+  private String name;
+  private String email;
+  private String password;
+  private String role;
 
-    public void setIdadmin(Long idadmin) {
-        this.idadmin = idadmin;
-    }
+  public Long getIdadmin() {
+    return idadmin;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setIdadmin(Long idadmin) {
+    this.idadmin = idadmin;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public admin(Long idadmin, String name, String email, String password) {
-        super();
-        this.idadmin = idadmin;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public admin() {
-        super();
-    }
-    
+  public String getRole() {
+    return role;
+  }
 
+  public void setRole(String role) {
+    this.role = role;
+  }
+
+  public admin(Long idadmin, String name, String email, String password, String role) {
+    super();
+    this.idadmin = idadmin;
+    this.name = name;
+    this.email = email;
+    this.password = password;
+    this.role = role;
+  }
+
+  public admin() {
+    super();
+  }
 }

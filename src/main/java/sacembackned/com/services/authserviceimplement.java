@@ -1,6 +1,6 @@
 package sacembackned.com.services;
 
-
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,21 @@ public class authserviceimplement implements authservice {
 
     @Override
     public Optional<admin> getAdmin(String email) {
-       return adminrepository.findByEmail(email);
+        return adminrepository.findByEmail(email);
     }
 
+    @Override
+    public List<admin> getUsers() {
+        return (List<admin>) adminrepository.findAll();
+    }
+
+    @Override
+    public void DeletebyId(Long idadmin) {
+        adminrepository.deleteById(idadmin);
+    }
+
+    @Override
+    public Optional<admin> GetUserById(Long idadmin) {
+        return adminrepository.findById(idadmin);
+    }
 }

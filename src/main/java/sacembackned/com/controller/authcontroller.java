@@ -1,5 +1,6 @@
 package sacembackned.com.controller;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class authcontroller {
         String email = a.getEmail();
 
         if (Authservice.getAdmin(email).isPresent()) {
-     
+
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists");
         }
         admin registered = Authservice.registerAdmin(a);
@@ -48,9 +49,32 @@ public class authcontroller {
         } else if (!Authservice.getAdmin(email).get().getPassword().equals(password)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect Password");
 
-        }
-        return ResponseEntity.status(HttpStatus.OK).body("Authorized");
+        } else
+            return ResponseEntity.ok(true);
 
+    }
+
+    @GetMapping("/allUsers")
+    @ResponseBody
+    public ResponseEntity<?> getUsers() {
+
+        List<admin> list = Authservice.getUsers();
+
+        if (list.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Pas des utilisateurs.");
+        } else {
+            return ResponseEntity.ok(list);
+        }
+    }
+
+    @DeleteMapping("/DeleteUser/{idadmin}")
+    public Boolean DeleteUser(@PathVariable Long idadmin) {
+        Authservice.DeletebyId(idadmin);
+        if (Authservice.GetUserById(idadmin).isEmpty()) {
+            return true;
+        }
+        else
+        return false;
     }
 
 }
