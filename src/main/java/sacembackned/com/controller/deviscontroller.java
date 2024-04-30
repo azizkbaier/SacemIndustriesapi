@@ -1,12 +1,15 @@
 package sacembackned.com.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,13 +20,13 @@ import sacembackned.com.entity.devis;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/sacemindustrieplatform/api")
+@RequestMapping("/sacemindustrieplatform")
 public class deviscontroller {
 
     @Autowired
     devisservice devisservice;
 
-    @GetMapping("/alldevis")
+    @GetMapping("/AllDevis")
     public ResponseEntity<List<devis>> getalldevis() {
         List<devis> list = devisservice.getalldevis();
         if (list.isEmpty()) {
@@ -41,5 +44,20 @@ public class deviscontroller {
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erreur lors de l'ajout du devis.");
         }
+    }
+
+    @GetMapping("/Devis/{iddevis}")
+    public Optional<devis> GetDevisById(@PathVariable int iddevis) {
+        Optional<devis> Devis = devisservice.GetDevisById(iddevis);
+        return Devis;
+    }
+    @DeleteMapping("/DeleteDevis/{iddevis}")
+    public Boolean DeleteDevis(@PathVariable int iddevis) {
+        devisservice.DeletebyId(iddevis);
+        if (devisservice.GetDevisById(iddevis).isEmpty()) {
+            return true;
+        }
+        else
+        return false;
     }
 }

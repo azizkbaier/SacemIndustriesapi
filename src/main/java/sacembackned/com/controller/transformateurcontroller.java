@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import sacembackned.com.entity.transformateur;
-import sacembackned.com.entity.transformateur;
 import sacembackned.com.services.transformateurservice;
 @RestController
 @CrossOrigin("*")

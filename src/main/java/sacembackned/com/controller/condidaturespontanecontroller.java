@@ -63,12 +63,8 @@ cv cv=condidaturespontaneservice.savefile(file);
 		condidaturespontane	cs= new condidaturespontane(civilite, nometprenom, datedenaissance, email, adresse, codepostal, ville, telephone, niveaudediplome, intituledediplome) ;
 		 cs.setCv(cv);
 
-	     if (cs != null) {
-			condidaturespontaneservice.addcondidaturespontane(cs);
-	         return ResponseEntity.status(HttpStatus.CREATED).body(cs);
-	     } else {
-	         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"error\": \"Erreur lors de l'ajout de la condidaturespontane.\"}");
-	    }
+	     condidaturespontaneservice.addcondidaturespontane(cs);
+		 return ResponseEntity.status(HttpStatus.CREATED).body(cs);
 		 }
 
 	 @PostMapping("/upload")
