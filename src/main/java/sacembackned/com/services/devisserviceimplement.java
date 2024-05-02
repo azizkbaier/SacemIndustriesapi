@@ -27,8 +27,8 @@ public class devisserviceimplement implements devisservice {
     }
 
     @Override
-    public Optional<devis> GetDevisById(int idadmin) {
-        return repdevis.findById(idadmin);
+    public Optional<devis> GetDevisById(int id) {
+        return repdevis.findById(id);
     }
 
     @Override

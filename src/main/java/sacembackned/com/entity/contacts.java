@@ -1,4 +1,4 @@
-package sacembackned.com.entity; // Replace with your actual package name (if different)
+package sacembackned.com.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
