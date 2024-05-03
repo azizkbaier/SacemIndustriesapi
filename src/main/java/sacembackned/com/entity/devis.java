@@ -1,24 +1,43 @@
 package sacembackned.com.entity;
 
-import java.io.Serializable;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.io.Serializable;
 
 @Entity
 public class devis implements Serializable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int iddevis;
-	private String nomprenom;
-	private String telephone;
-	private String adresse;
-	private String pays;
-	private String societe;
-	private String prestation;
-	private String objet;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int iddevis;
+
+    private String nomprenom;
+    private String telephone;
+    private String adresse;
+    private String pays;
+    private String societe;
+    private String objet;
+
+    @ManyToOne(fetch = FetchType.LAZY) // Optional: Set fetch strategy to LAZY for performance optimization
+    @JoinColumn(name = "prestation_id") // Foreign key column in devis table
+    private equipment prestation; // Reference to equipment entity
+
+
+	
+    public devis(int iddevis, String nomprenom, String telephone, String adresse, String pays, String societe,
+                 String objet, equipment prestation) {
+        this.iddevis = iddevis;
+        this.nomprenom = nomprenom;
+        this.telephone = telephone;
+        this.adresse = adresse;
+        this.pays = pays;
+        this.societe = societe;
+        this.objet = objet;
+        this.prestation = prestation;
+    }
+
+    public devis() {
+    }
 
 	public int getIddevis() {
 		return iddevis;
@@ -68,14 +87,6 @@ public class devis implements Serializable {
 		this.societe = societe;
 	}
 
-	public String getPrestation() {
-		return prestation;
-	}
-
-	public void setPrestation(String prestation) {
-		this.prestation = prestation;
-	}
-
 	public String getObjet() {
 		return objet;
 	}
@@ -84,21 +95,12 @@ public class devis implements Serializable {
 		this.objet = objet;
 	}
 
-	public devis(int iddevis, String nomprenom, String telephone, String adresse, String pays, String societe,
-			String prestation, String objet) {
-		super();
-		this.iddevis = iddevis;
-		this.nomprenom = nomprenom;
-		this.telephone = telephone;
-		this.adresse = adresse;
-		this.pays = pays;
-		this.societe = societe;
+	public equipment getPrestation() {
+		return prestation;
+	}
+
+	public void setPrestation(equipment prestation) {
 		this.prestation = prestation;
-		this.objet = objet;
 	}
-
-	public devis() {
-		super();
-	}
-
+	
 }
