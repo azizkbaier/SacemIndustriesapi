@@ -11,7 +11,7 @@
 			spring-boot-starter-parent
 		</artifactId>
 		<version>
-			3.2.4
+			3.2.5
 		</version>
 		<relativePath />
 		<!-- lookup parent from repository -->
@@ -42,6 +42,17 @@
 	<dependencies>
 		<dependency>
 			<groupId>
+				io.jsonwebtoken
+			</groupId>
+			<artifactId>
+				jjwt
+			</artifactId>
+			<version>
+				0.9.1
+			</version>
+		</dependency>
+		<dependency>
+			<groupId>
 				com.cloudinary
 			</groupId>
 			<artifactId>
@@ -58,9 +69,6 @@
 			<artifactId>
 				lombok
 			</artifactId>
-			<version>
-				1.18.22
-			</version>
 			<scope>
 				provided
 			</scope>

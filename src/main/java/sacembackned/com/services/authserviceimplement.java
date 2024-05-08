@@ -2,12 +2,14 @@ package sacembackned.com.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sacembackned.com.entity.admin;
 import sacembackned.com.repository.adminrepository;
+
 
 @Service
 public class authserviceimplement implements authservice {
@@ -39,5 +41,10 @@ public class authserviceimplement implements authservice {
     @Override
     public Optional<admin> GetUserById(Long idadmin) {
         return adminrepository.findById(idadmin);
+    }
+
+    @Override
+    public String GenerateToken(Long idadmin) {
+        return idadmin + "-" + UUID.randomUUID().toString();
     }
 }

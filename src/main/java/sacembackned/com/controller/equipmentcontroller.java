@@ -1,6 +1,5 @@
 package sacembackned.com.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +10,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import sacembackned.com.entity.equipment;
 import sacembackned.com.services.equipmentservice;
@@ -25,6 +21,7 @@ import sacembackned.com.services.equipmentservice;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/sacemindustrieplatform/api")
+
 public class equipmentcontroller {
     @Autowired
     equipmentservice equipmentservice;
@@ -43,49 +40,15 @@ public class equipmentcontroller {
         }
     }
 
-    @PostMapping("/addequipment")
+    @PostMapping("/Addequipment")
     @ResponseBody
-    public equipment addequipment(@RequestParam String nom, @RequestParam String description,
-            @RequestParam String type, @RequestParam Long puissance,
-            @RequestParam(required = false) MultipartFile image,
-            @RequestParam(required = false) MultipartFile specsfile) throws IOException {
+    public equipment addequipment(@RequestBody equipment e) {
 
-        // Upload image and specs file (handle null checks)
-        String imageUrl = "";
-        if (image != null) {
-            imageUrl = CloudinaryController.upload(image);
-        }
-
-        String specsUrl = "";
-        if (specsfile != null) {
-            specsUrl = CloudinaryController.upload(specsfile);
-        }
-        equipment e = new equipment();
-        e.setNom(nom);
-        e.setDescription(description);
-        e.setPuissance(puissance);
-        e.setImageURL(imageUrl);
-        e.setSpecsfileURL(specsUrl);
-        e.setType(type);
-
-        // Save equipment using equipmentService
         equipment E = equipmentservice.addequipment(e);
-
         if (E != null) {
             return E;
         } else {
             return null;
-        }
-    }
-
-    @PutMapping("/updateequipment/{id}")
-    @ResponseBody
-    public ResponseEntity<?> updateequipment(@PathVariable("id") Integer id, @RequestBody equipment e) {
-        equipment updatedequipment = equipmentservice.updateequipment(id, e);
-        if (updatedequipment != null) {
-            return ResponseEntity.ok("equipment mis à jour avec succès.");
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("equipment non trouvé pour l'ID donné.");
         }
     }
 

@@ -1,6 +1,8 @@
 package sacembackned.com.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,8 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sacembackned.com.entity.admin;
 import sacembackned.com.services.authservice;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @CrossOrigin("*")
@@ -42,16 +42,31 @@ public class authcontroller {
     public ResponseEntity<?> Login(@RequestBody admin login) {
         String email = login.getEmail();
         String password = login.getPassword();
-
+        // Check if email exists
         if (Authservice.getAdmin(email).isEmpty()) {
-
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email does not exist");
-        } else if (!Authservice.getAdmin(email).get().getPassword().equals(password)) {
+        }
+
+        // Check password
+        admin retrievedAdmin = Authservice.getAdmin(email).get();
+
+        if (!retrievedAdmin.getPassword().equals(password)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect Password");
+        }
 
-        } else
-            return ResponseEntity.ok(true);
+        String token = Authservice.GenerateToken(retrievedAdmin.getIdadmin());
+        System.out.println(token);
 
+        // Prepare response object
+        Map<String, Object> response = new HashMap<>();
+        response.put("userId", retrievedAdmin.getIdadmin());
+        response.put("token", token);
+        response.put("success", true);
+        response.put("role", retrievedAdmin.getRole());
+        response.put("nom", retrievedAdmin.getName());
+        response.put("email", retrievedAdmin.getEmail());
+
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/allUsers")
@@ -72,9 +87,8 @@ public class authcontroller {
         Authservice.DeletebyId(idadmin);
         if (Authservice.GetUserById(idadmin).isEmpty()) {
             return true;
-        }
-        else
-        return false;
+        } else
+            return false;
     }
 
 }

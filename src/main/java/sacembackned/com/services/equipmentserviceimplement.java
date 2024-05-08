@@ -17,29 +17,12 @@ public class equipmentserviceimplement implements equipmentservice {
 
     @Override
     public equipment addequipment(equipment e) {
-        System.out.println(!e.getType().equals("transformateur"));
-        if (!e.getType().equals("transformateur")) {
-            e.setPuissance(null); // Set to null as puissance is Long
-          }
         repequipment.save(e);
         return e;
     }
 
 
-    @Override
-    public equipment updateequipment(Integer id, equipment e) {
-        Optional<equipment> existingequipmentOptional = repequipment.findById(id);
-        if (existingequipmentOptional.isPresent()) {
-            equipment existingequipment = existingequipmentOptional.get();
-            existingequipment.setNom(e.getNom());
-            existingequipment.setDescription(e.getDescription());
-            existingequipment.setImageURL((e.getImageURL()));
-            existingequipment.setSpecsfileURL((e.getSpecsfileURL()));
-            return repequipment.save(existingequipment);
-        } else {
-            return null; // Or throw an exception indicating that the equipment with the given ID doesn't exist
-        }
-    }
+ 
 
     @Override
 public void deleteequipment(Integer id) {

@@ -11,6 +11,7 @@ import sacembackned.com.services.cloudinaryservice;
 import sacembackned.com.services.fileservice; // Renamed service interface
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -34,8 +35,8 @@ public class cloudinarycontroller {
 
     @PostMapping("/upload")
     @ResponseBody
-    public String upload(@RequestParam MultipartFile file) throws IOException {
-        // No image-specific check
+    public  Map<String, String> upload(@RequestBody MultipartFile file) throws IOException {
+        System.out.println(file);
         @SuppressWarnings("unchecked")
         Map<String, Object> result = cloudinaryService.upload(file);
         file uploadedFile = new file(
@@ -43,7 +44,10 @@ public class cloudinarycontroller {
                 (String) result.get("url"),
                 (String) result.get("public_id"));
         fileService.save(uploadedFile);
-        return (String) result.get("url");
+        Map<String, String> url = new HashMap<>();
+        url.put("url", (String) result.get("url"));
+
+        return (url);
     }
 
     @DeleteMapping("/delete/{id}")

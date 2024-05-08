@@ -16,4 +16,6 @@ public interface authservice {
 
   Optional<admin> GetUserById(Long idadmin);
 
+  String GenerateToken(Long idadmin);
+
 }

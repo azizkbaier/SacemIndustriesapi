@@ -20,26 +20,26 @@ public class equipment {
 
     private String description;
 
-    private String imageURL;
+    private String image;
 
-    private String specsfileURL;
+    private String specsfile;
 
     @Column(nullable = false)
     private String type; // New attribute
 
     @Column
-    private Long puissance; // New attribute
+    private String puissance; // New attribute
 
     public equipment() {
     }
 
     public equipment(int id, String nom, String description, String image, String specsfile, String type,
-            Long puissance) {
+            String puissance) {
         this.id = id;
         this.nom = nom;
         this.description = description;
-        this.imageURL = image;
-        this.specsfileURL = specsfile;
+        this.image = image;
+        this.specsfile = specsfile;
         this.type = type;
         this.puissance = puissance;
     }
@@ -68,20 +68,20 @@ public class equipment {
         this.description = description;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getSpecsfileURL() {
-        return specsfileURL;
+    public String getSpecsfile() {
+        return specsfile;
     }
 
-    public void setSpecsfileURL(String specsfileURL) {
-        this.specsfileURL = specsfileURL;
+    public void setSpecsfile(String specsfile) {
+        this.specsfile = specsfile;
     }
 
     public String getType() {
@@ -92,11 +92,11 @@ public class equipment {
         this.type = type;
     }
 
-    public Long getPuissance() {
+    public String getPuissance() {
         return puissance;
     }
 
-    public void setPuissance(Long puissance) {
+    public void setPuissance(String puissance) {
         this.puissance = puissance;
     }
 
