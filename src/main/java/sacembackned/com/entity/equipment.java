@@ -1,6 +1,5 @@
 package sacembackned.com.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,10 +12,7 @@ public class equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
     private String nom;
-
-    @Column(nullable = false)
 
     private String description;
 
@@ -24,17 +20,17 @@ public class equipment {
 
     private String specsfile;
 
-    @Column(nullable = false)
-    private String type; // New attribute
+    private String category;
 
-    @Column
-    private String puissance; // New attribute
+    private String type;
+
+    private String puissance; 
 
     public equipment() {
     }
 
     public equipment(int id, String nom, String description, String image, String specsfile, String type,
-            String puissance) {
+            String puissance, String category) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -42,6 +38,7 @@ public class equipment {
         this.specsfile = specsfile;
         this.type = type;
         this.puissance = puissance;
+        this.category = category;
     }
 
     public int getId() {
@@ -98,6 +95,14 @@ public class equipment {
 
     public void setPuissance(String puissance) {
         this.puissance = puissance;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 }
