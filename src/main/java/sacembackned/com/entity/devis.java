@@ -17,15 +17,12 @@ public class devis implements Serializable {
     private String pays;
     private String societe;
     private String objet;
-
-    @ManyToOne(fetch = FetchType.LAZY) // Optional: Set fetch strategy to LAZY for performance optimization
-    @JoinColumn(name = "prestation_id") // Foreign key column in devis table
-    private equipment prestation; // Reference to equipment entity
+    private String prestation; // Reference to equipment entity
 
 
 	
     public devis(int iddevis, String nomprenom, String telephone, String adresse, String pays, String societe,
-                 String objet, equipment prestation) {
+                 String objet, String prestation) {
         this.iddevis = iddevis;
         this.nomprenom = nomprenom;
         this.telephone = telephone;
@@ -95,11 +92,11 @@ public class devis implements Serializable {
 		this.objet = objet;
 	}
 
-	public equipment getPrestation() {
+	public String getPrestation() {
 		return prestation;
 	}
 
-	public void setPrestation(equipment prestation) {
+	public void setPrestation(String prestation) {
 		this.prestation = prestation;
 	}
 	

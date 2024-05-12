@@ -3,6 +3,7 @@ package sacembackned.com.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,7 +60,7 @@ public class authcontroller {
 
         // Prepare response object
         Map<String, Object> response = new HashMap<>();
-        response.put("userId", retrievedAdmin.getIdadmin());
+        response.put("Id", retrievedAdmin.getIdadmin());
         response.put("token", token);
         response.put("success", true);
         response.put("role", retrievedAdmin.getRole());
@@ -91,4 +92,23 @@ public class authcontroller {
             return false;
     }
 
+    @GetMapping("/User/{idadmin}")
+    public Optional<admin> GetUserById(@PathVariable Long idadmin) {
+        return Authservice.GetUserById(idadmin);
+    }
+
+    @PutMapping("/UpdatePassword/{idadmin}")
+    public ResponseEntity<?> updatePassword(@PathVariable Long idadmin, @RequestBody String Password) {
+        Optional<admin> existingAdmin = Authservice.GetUserById(idadmin);
+
+        if (existingAdmin.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        existingAdmin.get().setPassword(Password);
+
+        Authservice.registerAdmin(existingAdmin.get());
+
+        return ResponseEntity.ok(true);
+    }
 }

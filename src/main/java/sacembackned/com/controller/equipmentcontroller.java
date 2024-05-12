@@ -75,4 +75,10 @@ public class equipmentcontroller {
         }
     }
 
+    @GetMapping("/Transformateurs")
+    @ResponseBody
+    public List<equipment> getTransformateurs() {
+        return equipmentservice.getTransformateurs();
+    }
+
 }

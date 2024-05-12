@@ -21,22 +21,20 @@ public class equipmentserviceimplement implements equipmentservice {
         return e;
     }
 
-
- 
-
     @Override
-public void deleteequipment(Integer id) {
-    equipment equipmentToDelete = getequipmentById(id);
-    if (equipmentToDelete != null) {
-        repequipment.deleteById(id);
-    } else {
-        // L'équipement avec l'ID spécifié n'existe pas
-        throw new NoSuchElementException("Aucun équipement trouvé pour l'ID donné: " + id);
-        // Ou vous pouvez simplement logguer un message d'erreur sans lancer une exception
-        // Logger.getLogger(equipmentserviceimplement.class.getName()).log(Level.SEVERE, "Aucun équipement trouvé pour l'ID donné: " + id);
+    public void deleteequipment(Integer id) {
+        equipment equipmentToDelete = getequipmentById(id);
+        if (equipmentToDelete != null) {
+            repequipment.deleteById(id);
+        } else {
+            // L'équipement avec l'ID spécifié n'existe pas
+            throw new NoSuchElementException("Aucun équipement trouvé pour l'ID donné: " + id);
+            // Ou vous pouvez simplement logguer un message d'erreur sans lancer une
+            // exception
+            // Logger.getLogger(equipmentserviceimplement.class.getName()).log(Level.SEVERE,
+            // "Aucun équipement trouvé pour l'ID donné: " + id);
+        }
     }
-}
-
 
     @Override
     public List<equipment> getallequipment() {
@@ -48,5 +46,10 @@ public void deleteequipment(Integer id) {
         Optional<equipment> equipmentOptional = repequipment.findById(id);
         return equipmentOptional.orElse(null);
     }
-   
+
+    @Override
+    public List<equipment> getTransformateurs(){
+        return repequipment.findByCategory("Transformateur");
+    }
+
 }

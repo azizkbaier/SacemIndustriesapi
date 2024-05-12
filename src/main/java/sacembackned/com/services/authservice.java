@@ -18,4 +18,5 @@ public interface authservice {
 
   String GenerateToken(Long idadmin);
 
+
 }

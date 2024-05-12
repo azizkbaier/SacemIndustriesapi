@@ -43,6 +43,7 @@ public class authserviceimplement implements authservice {
         return adminrepository.findById(idadmin);
     }
 
+
     @Override
     public String GenerateToken(Long idadmin) {
         return idadmin + "-" + UUID.randomUUID().toString();

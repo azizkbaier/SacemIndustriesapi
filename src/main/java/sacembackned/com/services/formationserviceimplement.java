@@ -25,6 +25,11 @@ public class formationserviceimplement implements formationservice {
 		return (List<formation>) repformation.findAll();
 		
 	}
+
+	@Override
+	public void DeleteFormation(int id){
+		repformation.deleteById(id);
+	}
 	
 
 }

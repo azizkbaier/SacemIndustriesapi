@@ -1,7 +1,6 @@
 package sacembackned.com.entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,12 +11,12 @@ import jakarta.persistence.Id;
 public class formation implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int idformation;
+    private int id;
     private String thematique;
     private String session;
     private String populationcible;
     private String formateur;
-    private LocalDate date;
+    private String date;
     private String lieu;
 
     public String getLieu() {
@@ -32,8 +31,9 @@ public class formation implements Serializable {
         super();
     }
 
-    public formation(String thematique,String lieu, String session, String populationcible, String formateur, LocalDate date) {
+    public formation(int id,String thematique,String lieu, String session, String populationcible, String formateur, String date) {
         super();
+        this.id = id; 
         this.thematique = thematique;
         this.session = session;
         this.populationcible = populationcible;
@@ -74,11 +74,20 @@ public class formation implements Serializable {
         this.formateur = formateur;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 }
