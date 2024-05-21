@@ -12,7 +12,8 @@ public interface equipmentservice {
     List<equipment> getallequipment();
 
     equipment getequipmentById(Integer id);
-    
-    List<equipment> getTransformateurs(); 
 
+    List<equipment> getTransformateurs();
+
+    List<equipment> getbytypeandpuissance(String type, String puissance);
 }

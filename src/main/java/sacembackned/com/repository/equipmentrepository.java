@@ -9,5 +9,7 @@ import java.util.List;
 @Repository
 public interface equipmentrepository extends JpaRepository<equipment, Integer> {
 
+    List<equipment> findByTypeAndPuissance(String type, String puissance);
+
     List<equipment> findByCategory(String category);;
 }

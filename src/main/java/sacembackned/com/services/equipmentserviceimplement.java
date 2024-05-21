@@ -1,5 +1,6 @@
 package sacembackned.com.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -48,8 +49,25 @@ public class equipmentserviceimplement implements equipmentservice {
     }
 
     @Override
-    public List<equipment> getTransformateurs(){
+    public List<equipment> getTransformateurs() {
         return repequipment.findByCategory("Transformateur");
+    }
+
+    @Override
+    public List<equipment> getbytypeandpuissance(String type, String puissance) {
+        List<equipment> l = getTransformateurs();
+        List<equipment> l2 = repequipment.findByTypeAndPuissance(type, puissance);
+        List<equipment> commonItems = new ArrayList<>();
+
+        for (equipment item1 : l) {
+            for (equipment item2 : l2) {
+                if (item1.equals(item2)) {
+                    commonItems.add(item1); // Add the common item (item1)
+                    break; // Avoid adding duplicates if item1 matches multiple in l2
+                }
+            }
+        }
+        return commonItems;
     }
 
 }

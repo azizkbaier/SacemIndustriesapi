@@ -81,4 +81,14 @@ public class equipmentcontroller {
         return equipmentservice.getTransformateurs();
     }
 
+    @PostMapping("/Transformateursearch")
+    @ResponseBody
+    public List<equipment> getTransformateursbytypeandpuissance(@RequestBody equipment e) {
+        String type = e.getType(); 
+        String puissance = e.getPuissance();
+        List<equipment> l = equipmentservice.getbytypeandpuissance(type, puissance);
+        return l;
+
+    }
+
 }
